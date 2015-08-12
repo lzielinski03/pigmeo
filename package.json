@@ -1,0 +1,27 @@
+{
+	"name"		: "Pigmeo",
+	"description" : "",
+	"version"	: "0.0.0",
+	"author"	: "Zielinski Leonardo <lzielinski03@gmail.com>",
+	"contributors" : [{
+		"name" 	: "Manuel Alverez",
+		"email" : "malvarez92@gmail.com"
+		},
+		{
+		"name" 	: "Mateo Marconi",
+		"email" : "mateo.marconi@gmail.com"
+		}],
+	"scripts" 	: {
+		"postinstall" : "bower install --config.interactive=false"
+	}
+	"main"		: "server.js",
+	"dependencies" : {
+		"express"			: "~4.7.2",
+		"mongoose"			: "~3.6.2",
+		"morgan"			: "~1.2.2",
+		"body-parser"		: "~1.5.2",
+		"method-override"	: "~2.1.2",
+		"lodash"			: "~2.4.1",
+		"glob"				: "~4.0.5"
+	}
+}

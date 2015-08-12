@@ -1,0 +1,10 @@
+{
+	"name" : "Pigmeo",
+	"version" : "0.0.0",
+	"dependencies" : {
+		"bootstrap" : "latest",
+		"angular": "latest",
+		"angular-route": "latest",
+		"angular-messages" : "latest"
+	}
+}

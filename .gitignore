@@ -6,7 +6,7 @@ Icon?
 Thumbs.db
 
 # MongoDB config
-config/db.js
+config/env/local.js
 
 # Node and related ecosystem
 # ==========================

@@ -32,10 +32,10 @@ var routes = require('./app/routes.js');
 
 
 //app.set('env', 'production');
-console.log('Environment: ' + app.get('env'));
+//console.log('Environment: ' + app.get('env'));
 
 // routes
-routes(app);
+//routes(app);
 //var router = express.Router();
 
 app.listen(config.port);

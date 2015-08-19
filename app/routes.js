@@ -23,7 +23,7 @@ module.exports = function(app) {
 
 			res.sendfile('./public/' + module + '/view/' + module + '.html');
 		});
-		console.log('Module load: ' + module);
+		//console.log('Module load: ' + module);
 	});
 
 	app.use('/api', router);

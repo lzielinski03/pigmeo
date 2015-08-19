@@ -11,7 +11,7 @@ config/env/local.js
 # Node and related ecosystem
 # ==========================
 node_modules/
-public/libs/
+public/lib/
 
 
 # Assets

@@ -10,6 +10,10 @@
 		{
 		"name" 	: "Mateo Marconi",
 		"email" : "mateo.marconi@gmail.com"
+		},
+		{
+		"name" 	: "Ian Milanowski",
+		"email" : "ianmilanowski@gmail.com"
 		}],
 	"scripts" 	: {
 		"postinstall" : "bower install --config.interactive=false"
@@ -22,6 +26,7 @@
 		"body-parser"		: "~1.5.2",
 		"method-override"	: "~2.1.2",
 		"lodash"			: "~2.4.1",
-		"glob"				: "~4.0.5"
+		"glob"				: "~4.0.5",
+		"chalk"				: "~0.5"
 	}
 }

@@ -1,27 +1,34 @@
 'use strict';
 
 // modules
-var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var morgan = require('morgan');
-
+var init = require('./config/init')();
 var config = require('./config/config.js');
+var mongoose = require('mongoose');
+var chalk = require('chalk');
+
+// connect to mongo
+var db = mongoose.connect(config.db, function(err) {
+	if (err) {
+		console.error(chalk.red('Could not connect to MongoDB!'));
+		console.log(chalk.red(err));
+	}
+});
+
+// init express application
+var app = require('./config/express')(db);
+
+
+
+
+
+
+
 //var configRoutes = require('./app/routes.js');
 var routes = require('./app/routes.js');
 
-// connect to mongo
-mongoose.connect(config.db);
 
-// config app
-app.use(express.static(__dirname + '/public'));
-app.use(morgan(config.env));
-app.use(bodyParser.urlencoded({'extended' : 'true'}));
-app.use(bodyParser.json());
-app.use(bodyParser.json({ type : 'application/vnd.api+json'}));
-app.use(methodOverride());
+
+
 
 
 //app.set('env', 'production');

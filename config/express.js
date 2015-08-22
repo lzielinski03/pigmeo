@@ -4,6 +4,7 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
 var config = require('./config.js');
 var path = require('path');
 
@@ -31,23 +32,20 @@ module.exports = function(db){
 	if (process.env.NODE_ENV === 'development') {
 
 		// Showing stack errors
-		app.set('showStackError', true);
 		app.use(morgan('dev'));
 		app.set('view cache', false);
 	} else if (process.env.NODE_ENV === 'production') {
-		app.set('showStackError', false);
-		//app.use(morgan('dev')); ??
 		app.locals.cache = 'memory';
 	}
 
-	
-
-	// config app
-	app.use(express.static(__dirname + '/public'));
-	app.use(morgan(config.env));
-	app.use(bodyParser.urlencoded({'extended' : 'true'}));
+	app.use(bodyParser.urlencoded({extended : true}));
 	app.use(bodyParser.json());
 	app.use(bodyParser.json({ type : 'application/vnd.api+json'}));
+	app.use(express.static(__dirname + '/public'));
+	app.use(cookieParser()); // test
+
+
+	
 	app.use(methodOverride());
 	
 	return app;

@@ -28,5 +28,5 @@ module.exports = function() {
 			console.error(chalk.black.bgWhite('Application loaded using the "' + process.env.NODE_ENV + '" environment configuration'))
 		}
 	});
-	console.log(chalk.black.bgBlue("Init in " + process.env.NODE_ENV + " mode!"));
+	console.log(chalk.black.Blue("Init in " + process.env.NODE_ENV + " mode!"));
 };

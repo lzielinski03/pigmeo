@@ -17,25 +17,14 @@ var db = mongoose.connect(config.db, function(err) {
 // init express application
 var app = require('./config/express')(db);
 
+// Bootstrap passport config
+//require('./config/passport')();
 
-
-
-
-
-
-//var configRoutes = require('./app/routes.js');
-var routes = require('./app/routes.js');
-
-
-
-
-
-
-//app.set('env', 'production');
-//console.log('Environment: ' + app.get('env'));
-
-// routes
-//routes(app);
-//var router = express.Router();
-
+// Start the app by listening on <port>
 app.listen(config.port);
+
+// Expose app
+exports = module.exports = app;
+
+// Logging initialization
+console.log(chalk.bgGreen('Pigmeo application started on port ' + config.port));

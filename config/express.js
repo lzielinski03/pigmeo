@@ -6,10 +6,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
+var helmet = require('helmet');
 var passport = require('passport');
 var mongoStore = require('connect-mongo')({
 		session: session
 	});
+var flash = require('connect-flash');
 var config = require('./config.js');
 var path = require('path');
 
@@ -17,7 +19,7 @@ module.exports = function(db){
 	var app = express();
 
 	// get all model files
-	config.getGlobbedFiles('./app/**/models/**/*.js').forEach(function(modelPath) {
+	config.getGlobbedFiles('./app/**/models/*.js').forEach(function(modelPath) {
 		require(path.resolve(modelPath));
 	});
 
@@ -46,7 +48,6 @@ module.exports = function(db){
 	app.use(bodyParser.urlencoded({extended : true}));
 	app.use(bodyParser.json());
 	app.use(bodyParser.json({ type : 'application/vnd.api+json'}));
-	app.use(express.static(__dirname + '/public'));
 	app.use(cookieParser()); // test
 
 	// Express MongoDB session storage
@@ -64,6 +65,22 @@ module.exports = function(db){
 	app.use(passport.initialize());
 	app.use(passport.session());
 
+	// connect flash for flash messages
+    app.use(flash());
+
+     // Use helmet to secure Express headers
+    app.use(helmet.xframe());
+    app.use(helmet.xssFilter());
+    app.use(helmet.nosniff());
+    app.use(helmet.ienoopen());
+    app.disable('x-powered-by');
+
+    app.use(express.static(__dirname + '/public'));
+
+    // get all routes files
+	config.getGlobbedFiles('./app/**/routes/*.js').forEach(function(modelPath) {
+		require(path.resolve(modelPath));
+	});
 	
 	app.use(methodOverride());
 	

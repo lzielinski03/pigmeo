@@ -3,8 +3,13 @@
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var mongoStore = require('connect-mongo')({
+		session: session
+	});
 var config = require('./config.js');
 var path = require('path');
 
@@ -44,6 +49,20 @@ module.exports = function(db){
 	app.use(express.static(__dirname + '/public'));
 	app.use(cookieParser()); // test
 
+	// Express MongoDB session storage
+	app.use(session({
+		saveUninitialized: true,
+		resave: true,
+		secret: config.sessionSecret,
+		store: new mongoStore({
+			db: db.connection.db,
+			collection: config.sessionCollection
+		})
+	}));
+
+	// use passport session
+	app.use(passport.initialize());
+	app.use(passport.session());
 
 	
 	app.use(methodOverride());

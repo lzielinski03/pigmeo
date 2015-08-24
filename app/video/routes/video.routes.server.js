@@ -1,4 +1,9 @@
+'use strict';
+
 module.exports =  function(app, router) {
-	if (app.get('env') == 'development')
-		console.log('Load: ' + require('path').basename(__filename));
+	var upload  = require('../controllers/video.controller.server.js');
+console.log("in video");
+	app.route('/upload/:filename').get(upload.read);
+
+	app.route('/upload').post(upload.create);
 };

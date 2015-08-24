@@ -11,6 +11,7 @@ var passport = require('passport');
 var mongoStore = require('connect-mongo')({
 		session: session
 	});
+var busboyBodyParser = require('busboy-body-parser');
 var flash = require('connect-flash');
 var config = require('./config.js');
 var path = require('path');
@@ -21,6 +22,7 @@ module.exports = function(db){
 	// get all model files
 	config.getGlobbedFiles('./app/**/models/*.js').forEach(function(modelPath) {
 		require(path.resolve(modelPath));
+		console.log(modelPath);
 	});
 
 	// setting application local variables
@@ -49,6 +51,8 @@ module.exports = function(db){
 	app.use(bodyParser.json());
 	app.use(bodyParser.json({ type : 'application/vnd.api+json'}));
 	app.use(cookieParser()); // test
+
+	app.use(busboyBodyParser()); // test for video upload
 
 	// Express MongoDB session storage
 	app.use(session({
@@ -79,7 +83,8 @@ module.exports = function(db){
 
     // get all routes files
 	config.getGlobbedFiles('./app/**/routes/*.js').forEach(function(modelPath) {
-		require(path.resolve(modelPath));
+		require(path.resolve(modelPath))(app, null);
+		console.log(modelPath);
 	});
 	
 	app.use(methodOverride());

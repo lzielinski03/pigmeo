@@ -16,6 +16,7 @@ var flash = require('connect-flash');
 var config = require('./config.js');
 var path = require('path');
 
+
 module.exports = function(db){
 	var app = express();
 
@@ -82,10 +83,13 @@ module.exports = function(db){
     app.use(express.static(__dirname + '/public'));
 
     // get all routes files
+    var router = express.Router();
 	config.getGlobbedFiles('./app/**/routes/*.js').forEach(function(modelPath) {
-		require(path.resolve(modelPath))(app, null);
+		require(path.resolve(modelPath))(app, router);
 		console.log(modelPath);
 	});
+
+	app.use('/admin', router);
 	
 	app.use(methodOverride());
 	

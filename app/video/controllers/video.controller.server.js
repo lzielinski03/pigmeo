@@ -10,6 +10,7 @@ var gfs = new Grid(mongoose.connection.db);
 exports.create = function(req, res) {
   console.log("creating...");
   var part = req.files.filefield;
+  //console.log(part);
 
   var writeStream = gfs.createWriteStream({
     filename: part.name,
@@ -18,14 +19,12 @@ exports.create = function(req, res) {
   });
 
   writeStream.on('close', function() {
-    return res.status(200).send({
-      message: 'Success'
-    });
+    console.log('closed');
   });
 
   writeStream.write(part.data);
   writeStream.end();
- 
+ return {message: 'Success'};
 };
  
 exports.read = function(req, res) {

@@ -4,6 +4,7 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var compress = require('compression');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var helmet = require('helmet');
@@ -23,7 +24,6 @@ module.exports = function(db){
 	// get all model files
 	config.getGlobbedFiles('./app/**/models/*.js').forEach(function(modelPath) {
 		require(path.resolve(modelPath));
-		console.log(modelPath);
 	});
 
 	// setting application local variables
@@ -34,9 +34,19 @@ module.exports = function(db){
 
 	// Passing the request url to environment locals
 	app.use(function (req, res, next) {
+		console.log(req.url);
 		res.locals.url = req.protocol + '://' + req.headers.host + req.url;
 		next();
 	});
+
+	// Should be placed before express.static
+	app.use(compress({
+		filter: function(req, res) {
+			return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
+		},
+		level: 9
+	}));
+
 
 	// Environment dependent middleware
 	if (process.env.NODE_ENV === 'development') {
@@ -50,10 +60,11 @@ module.exports = function(db){
 
 	app.use(bodyParser.urlencoded({extended : true}));
 	app.use(bodyParser.json());
-	app.use(bodyParser.json({ type : 'application/vnd.api+json'}));
+	app.use(methodOverride());
+	//app.use(bodyParser.json({ type : 'application/vnd.api+json'}));
 	app.use(cookieParser()); // test
 
-	app.use(busboyBodyParser()); // test for video upload
+	//app.use(busboyBodyParser()); // test for video upload
 
 	// Express MongoDB session storage
 	app.use(session({
@@ -80,18 +91,25 @@ module.exports = function(db){
     app.use(helmet.ienoopen());
     app.disable('x-powered-by');
 
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(path.resolve('./public')));
+    var routes = require('../app/routes.js')(app);
+   
 
     // get all routes files
+    /*
     var router = express.Router();
-	config.getGlobbedFiles('./app/**/routes/*.js').forEach(function(modelPath) {
+	config.getGlobbedFiles('./app/** /routes/*.js').forEach(function(modelPath) {
 		require(path.resolve(modelPath))(app, router);
 		console.log(modelPath);
 	});
 
 	app.use('/admin', router);
+	*/
 	
-	app.use(methodOverride());
+	//var routes = require('../app/routes.js')(app);
+	//app.use(routes);
+
+	//app.use(methodOverride());
 	
 	return app;
 };

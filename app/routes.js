@@ -7,9 +7,10 @@ var modules = require('../config/modules.js');
 
 module.exports = function(app) {
 	configRoutes.getGlobbedFiles('./app/*/routes/*.routes.server.js').forEach(function(routePath) {
+		console.log('loading route: ' + routePath);
 		require(path.resolve(routePath))(app, router);
 	});
-
+/*
 	modules.forEach(function (module) {
 		//var test = '/' + index;
 		//console.log(module);
@@ -21,12 +22,12 @@ module.exports = function(app) {
 			}
 
 
-			res.sendfile('./public/' + module + '/view/' + module + '.html');
+			//res.sendfile('./public/' + module + '/view/' + module + '.html');
 		});
 		//console.log('Module load: ' + module);
 	});
-
-	app.use('/api', router);
+*/
+	app.use('/', router);
 	
 	app.get('*', function(req, res) {
 	    res.sendfile('./public/commons/view/template/404.html');

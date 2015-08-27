@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="myModule">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Test Video</title>
+		<link type="text/css" rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+
+		<style type="text/css">
+			nav{
+				margin-top: 20px;
+			}
+			.page-header{
+				text-align: center;
+			}
+		</style>
+
+		<!-- Angular -->		
+		<script src="/lib/angular/angular.js"></script>
+
+		<script type="text/javascript" src="/video/controllers/video.controller.client.js"></script>
+		<script type="text/javascript" src="/video/app.js"></script>
+
+	</head>
+	<body>
+		<form action="http://localhost:3000/admin/video" method="post" enctype="multipart/form-data">
+			<input type="file" name="filefield">
+			<input type="submit" value="enviar">
+		</form>
+	</body>
+</html>

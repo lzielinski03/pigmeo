@@ -6,7 +6,7 @@ var router = require('express').Router();
 var modules = require('../config/modules.js');
 
 module.exports = function(app) {
-	configRoutes.getGlobbedFiles('./app/*/routes/*.routes.server.js').forEach(function(routePath) {
+	configRoutes.getGlobbedFiles('./app/**/routes/*.routes.server.js').forEach(function(routePath) {
 		console.log('loading route: ' + routePath);
 		require(path.resolve(routePath))(app, router);
 	});

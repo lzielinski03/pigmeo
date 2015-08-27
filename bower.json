@@ -5,6 +5,7 @@
 		"bootstrap" : "latest",
 		"angular": "latest",
 		"angular-route": "latest",
-		"angular-messages" : "latest"
+		"angular-messages" : "latest",
+		"font-awesome" : "~4.0.0"
 	}
 }

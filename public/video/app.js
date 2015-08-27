@@ -1,2 +1,6 @@
 'use strict';
-angular.module('scotchApp')
+
+angular
+    .module('videoApp', [
+    	'app.videoController'
+    	]);

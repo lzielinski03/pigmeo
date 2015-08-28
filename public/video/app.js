@@ -1,6 +1,8 @@
-'use strict';
+(function() {
+	'use strict';
 
-angular
-    .module('videoApp', [
-    	'app.videoController'
-    	]);
+	angular
+	    .module('videoApp', [
+	    	'ngRoute'
+	    	]);
+})();

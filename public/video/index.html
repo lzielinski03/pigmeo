@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html ng-app="videoApp">
   <head>
     <!-- SCROLLS -->
     <!-- load bootstrap and fontawesome via CDN -->
@@ -8,14 +9,12 @@
 
     <!-- SPELLS -->
     <!-- load angular and angular route via CDN -->
-    <script src="/lib/angular/angular.js"></script>
-    <script src="/lib/angular-route/angular-route.js"></script>
-    <script src="script.js"></script>
+   
   </head>
-  <body>
-
+  <body ng-controller="VideoController as video">
+    
       <!-- HEADER AND NAVBAR -->
-      <header>
+      <header >
           <nav class="navbar navbar-default">
           <div class="container">
               <div class="navbar-header">
@@ -24,7 +23,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                   <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                  <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                  <li><a href="#video"><i class="fa fa-shield"></i> Video</a></li>
                   <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
               </ul>
           </div>
@@ -33,11 +32,18 @@
 
       <!-- MAIN CONTENT AND INJECTED VIEWS -->
       <div id="main">
-
+         <!-- {{ video.message }} -->
           <!-- angular templating -->
           <!-- this is where content will be injected -->
-
+          <div ng-view></div>
       </div>
 
   </body>
 </html>
+
+<script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular-route/angular-route.js"></script>
+
+<script src="app.js"></script>
+<script src="video.config.js"></script>
+<script src="video.controller.js"></script>

@@ -3,6 +3,7 @@
 
 	angular
 	    .module('videoApp', [
-	    	'ngRoute'
+	    	'ngRoute',
+	    	'ngFileUpload'
 	    	]);
 })();

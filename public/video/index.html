@@ -5,13 +5,8 @@
     <!-- load bootstrap and fontawesome via CDN -->
     <link type="text/css" rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="/lib/font-awesome/dist/css/font-awesome.css">
-
-
-    <!-- SPELLS -->
-    <!-- load angular and angular route via CDN -->
-   
   </head>
-  <body ng-controller="VideoController as video">
+  <body>
     
       <!-- HEADER AND NAVBAR -->
       <header >
@@ -24,7 +19,7 @@
               <ul class="nav navbar-nav navbar-right">
                   <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                   <li><a href="#video"><i class="fa fa-shield"></i> Video</a></li>
-                  <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                  <li><a href="#upload"><i class="fa fa-comment"></i> Upload video</a></li>
               </ul>
           </div>
           </nav>
@@ -43,6 +38,7 @@
 
 <script src="/lib/angular/angular.js"></script>
 <script src="/lib/angular-route/angular-route.js"></script>
+<script src="/lib/ng-file-upload/ng-file-upload.js"></script>
 
 <script src="app.js"></script>
 <script src="video.config.js"></script>

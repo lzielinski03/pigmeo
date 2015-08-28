@@ -12,6 +12,11 @@
 				templateUrl : 'view/video.html',
 				controller  : 'VideoController',
 				controllerAs: 'vm'
+			})
+			.when('/upload', {
+				templateUrl : 'view/upload.html',
+				controller  : 'VideoController',
+				controllerAs: 'vm'
 			});
 	}
 })();

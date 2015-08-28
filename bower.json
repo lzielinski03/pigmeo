@@ -6,6 +6,7 @@
 		"angular": "latest",
 		"angular-route": "latest",
 		"angular-messages" : "latest",
-		"font-awesome" : "~4.0.0"
+		"font-awesome" : "~4.0.0",
+		"ng-file-upload" : "latest"
 	}
 }

@@ -1,17 +1,18 @@
  'use strict';
- 
+
+ var chalk = require('chalk');
 var mongoose = require('mongoose');
+var util = require('util');
 
 var _ = require('lodash');
 var Grid = require('gridfs-stream');
 Grid.mongo = mongoose.mongo;
 var gfs = new Grid(mongoose.connection.db);
- 
-exports.create = function(req, res) {
-  console.log('create');
-  var part = req.files.filefield;
-  //console.log(part);
 
+
+exports.create = function(req, res) { 
+
+  var part = req.files.filefield;
   var writeStream = gfs.createWriteStream({
     filename: part.name,
     mode: 'w',
@@ -24,8 +25,16 @@ exports.create = function(req, res) {
 
   writeStream.write(part.data);
   writeStream.end();
- return {message: 'Success'};
+ res.send({message: 'Success'});
 };
+
+exports.update = function(req, res) {
+
+};
+
+exports.delete = function(req, res) {
+  
+}
 
 exports.list = function(req, res) {
   console.log('list files: ');

@@ -1,28 +1,18 @@
 'use strict';
-var upload  = require('../controllers/video.controller.server.js');
 
 module.exports =  function(app, router) {
 
-	router.route('/video')
-		.post(upload.create
-			/*
-			function (req, res){
-			console.log('post /video')
-			var x = upload.create(req, res);
-			console.log(x);
-			res.json(x);
-			*/
-		)
-		.get(upload.list
-			/*
-			function (req, res){
-				console.log('get /video')
-				res.json(upload.read(req, res));
-			}*/
-		);
+	var video  = require('../controllers/video.controller.server.js');
 
-	router.route('/video/:video_id')
-		.get(upload.read);
+
+	router.route('/video')
+		.get(video.list)
+		.post(video.create);
+
+	router.route('/video/:videoId')
+		.get(video.read)
+		.put(video.update)
+		.delete(video.delete);
 
 	app.get('/video', function(req, res) {
 		res.sendfile('./public/video/view/index.html');

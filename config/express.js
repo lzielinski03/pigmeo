@@ -64,7 +64,7 @@ module.exports = function(db){
 	//app.use(bodyParser.json({ type : 'application/vnd.api+json'}));
 	app.use(cookieParser()); // test
 
-	//app.use(busboyBodyParser()); // test for video upload
+	app.use(busboyBodyParser()); // test for video upload
 
 	// Express MongoDB session storage
 	app.use(session({

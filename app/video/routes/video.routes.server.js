@@ -20,15 +20,15 @@ module.exports =  function(app, router) {
 				res.json(upload.read(req, res));
 			}*/
 		);
-/*
+
 	router.route('/video/:video_id')
-		.get(function(req, res) {
-			console.log('get /video/:video_id')
-		});
-*/
+		.get(upload.read);
+
 	app.get('/video', function(req, res) {
 		res.sendfile('./public/video/view/index.html');
 	});
+
+	app.use('/admin', router);
 /*
 console.log("in video");
 	app.route('/upload/:filename').get(upload.read);

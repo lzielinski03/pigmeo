@@ -27,7 +27,7 @@ module.exports = function(app) {
 		//console.log('Module load: ' + module);
 	});
 */
-	app.use('/', router);
+	//app.use('/admin', router);
 	
 	app.get('*', function(req, res) {
 	    res.sendfile('./public/commons/view/template/404.html');

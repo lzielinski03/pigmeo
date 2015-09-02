@@ -30,20 +30,41 @@ exports.create = function(req, res) {
 exports.list = function(req, res) {
   console.log('list files: ');
   gfs.files.find().toArray( function (err, files) {
+/*
+    files.forEach(function(value) {
+       var readstream = gfs.createReadStream({
+        filename : value.filename
+      });
+       console.log('here!');
+      readstream.on('data', function(data){
+        log.message(data);
+      });
+
+      readstream.on('end', function() {
+        log.message('end'); 
+        res.end();         
+      });
+
+      //console.log(value);
+    });
+
+    */
+   
+
     if (err)
       throw err;
     res.json(files);
   })
 
 };
- 
-exports.read = function(req, res) {
 
+exports.read = function(req, res) {
+console.log('here');
   gfs.files.find({ filename: req.params.filename }).toArray(function (err, files) {
 
     if(files.length===0){
       return res.status(400).send({
-        message: 'File not found'
+        message: 'File not found 404'
       });
     }
 

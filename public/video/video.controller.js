@@ -4,10 +4,26 @@
 	angular.module('videoApp')
 		.controller('VideoController', VideoController);
 
-	//VideoController.$inject = ['$scope', '$log'];
+	VideoController.$inject = ['videoService'];
 
-	function VideoController(){
+	function VideoController(videoService){
 		var vm = this;
-		vm.message = 'hola main o.o';
+		vm.videos = [];
+
+		activate();
+
+		function activate() {
+			return getVideos().then(function() {
+				console.info('Activated Videos View');
+			});
+		}
+
+		function getVideos() {
+			return videoService.getVideos()
+				.then(function(data) {
+					vm.videos = data;
+					return vm.videos;
+				});
+		}
 	}
 })();

@@ -1,8 +1,10 @@
  'use strict';
 
- var chalk = require('chalk');
 var mongoose = require('mongoose');
 var util = require('util');
+
+var Video = mongoose.model('Video');
+
 
 var _ = require('lodash');
 var Grid = require('gridfs-stream');
@@ -11,7 +13,19 @@ var gfs = new Grid(mongoose.connection.db);
 
 
 exports.create = function(req, res) { 
+  var video = new Video(req.body);
 
+  video.save(function(err) {
+    if(err)
+      res.send(err);
+
+    response = {
+      message: "Video created"
+    };
+    res.json(response);
+  });
+
+  /*
   var part = req.files.filefield;
   var writeStream = gfs.createWriteStream({
     filename: part.name,
@@ -26,6 +40,7 @@ exports.create = function(req, res) {
   writeStream.write(part.data);
   writeStream.end();
  res.send({message: 'Success'});
+ */
 };
 
 exports.update = function(req, res) {

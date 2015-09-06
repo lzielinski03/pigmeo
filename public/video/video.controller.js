@@ -8,8 +8,8 @@
 
 	function VideoController(videoService){
 		var vm = this;
-		vm.videos = [];
-
+		//vm.titulo = '';
+		console.log(vm.video);
 		activate();
 
 		function activate() {

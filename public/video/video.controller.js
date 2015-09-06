@@ -8,8 +8,10 @@
 
 	function VideoController(videoService){
 		var vm = this;
-		//vm.titulo = '';
-		console.log(vm.video);
+		vm.titulo = '';
+		vm.crearVideo = crearVideo();
+
+
 		activate();
 
 		function activate() {
@@ -24,6 +26,10 @@
 					vm.videos = data;
 					return vm.videos;
 				});
+		}
+
+		function crearVideo() {
+			alert('hola');
 		}
 	}
 })();

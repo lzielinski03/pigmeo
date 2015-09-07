@@ -4,10 +4,10 @@ module.exports = function(app, router) {
 
 	var user = require('../controllers/users.controller.server.js');
 
-	router.route('/users')
+	router.route('/user')
 		.get(user.list)
 		.post(user.create);
-	router.route('/users/:id')
+	router.route('/user/:id')
 		.get(user.read)
 		.put(user.update)
 		.delete(user.delete);
@@ -15,6 +15,8 @@ module.exports = function(app, router) {
 	app.get('/users', function(req, res) {
 		res.sendfile('./public/user/index.html');
 	});
+
+	app.use('/ad', router);
 }
 
 /*

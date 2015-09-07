@@ -14,17 +14,21 @@
 
 		function getUser() {
 			return $http.get('/admin/video')
-				.then(getVideosComplete)
-				.catch(getVideosFailed);
+				.then(getUserComplete)
+				.catch(getUserFail);
 
-			function getVideosComplete(response) {
+			function getUserComplete(response) {
 				//console.log(response.data);
 				return response.data;
 			}
 
-			function getVideosFailed(error) {
+			function getUserFail(error) {
 				console.error('XHR Failed for getUser.' + error.data);
 			}
+		}
+		function createUser(data) {
+			//console.log(data);
+			return $http.post('/ad/user', data);
 		}
 	}
 

@@ -19,7 +19,7 @@ exports.create = function(req, res){
 	user.save(function(err) {
 		if (err)
 			res.send(err);
-		response = {
+		var response = {
 			message: "User created"
 		};
 		res.json(response);
@@ -93,7 +93,7 @@ exports.update = function(req, res){
 		}, function(err, userID){
 			if(err)
 				res.send(err);
-			response = {
+			var response = {
 				message: "User Updated"
 			};
 			res.json(response);
@@ -105,7 +105,7 @@ exports.delete = function(req, res, next){
 	User.remove({ _id: req.params.id }, function(err, user) {
 		if (err)
 			res.send(err);
-		response = {
+		var response = {
 			message: "User Deleted"
 		};
 		res.json(response);

@@ -2,27 +2,34 @@
 	'use strict';
 
 	angular.module('userApp')
-		.controller('UserController', UserController);
+		.controller('UserAuthCtrl', UserAuthCtrl);
+		//.controller('UserLoginCtrl', UserLoginCtrl)
+		//.controller('UserSignupCtrl', UserSignupCtrl)
+		//.controller('UserProfileCtrl', UserProfileCtrl);
 
-	UserController.$inject = ['userService'];
+	UserAuthCtrl.$inject = ['UserService'];
+	//UserLoginCtrl.$inject = ['UserService'];
+	//UserSignupCtrl.$inject = ['UserService'];
+	//UserProfileCtrl.$inject = ['UserService'];
 
-	function UserController(userService){
+	function UserAuthCtrl(UserService){
 		var vm = this;
+		vm.titulo = "User Title";
 		vm.message = 'User controller';
 
 		activate();
 
 		function activate() {
-			return getVideos().then(function() {
-				console.info('Activated Videos View');
+			return getUserProfile().then(function() {
+				console.info('Activated User Auth View');
 			});
 		}
 
 		function getUserProfile() {
-			return userService.getUserProfile()
+			return UserService.getUserProfile()
 				.then(function(data) {
-					vm.user.profile = data;
-					return vm.user;
+					vm.users = data;
+					return vm.users;
 				});
 		}
 

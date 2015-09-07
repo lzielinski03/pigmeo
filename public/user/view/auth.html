@@ -1,9 +1,15 @@
 <div class="container">
 
   <div class="jumbotron text-center">
-      <h1><span class="fa fa-lock"></span> Pigmeo Authentication</h1>
+      <h1><span class="fa fa-lock"></span>Pigmeo Authentication</h1>
 
       <p>Login or Register</p>
+      <input type="submit" value="enviar" ng-click="crearUsuario()">
+	<fieldset ng-repeat="user in vm.users">
+	<legend>{{user.filename}}</legend>
+	{{user}}
+	{{vm.title}}
+	</fieldset>
 
       <a href="#login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
       <a href="#signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>

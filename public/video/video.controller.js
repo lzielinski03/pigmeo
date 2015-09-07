@@ -9,14 +9,15 @@
 	function VideoController(videoService){
 		var vm = this;
 		vm.titulo = '';
-		vm.crearVideo = crearVideo();
-
+		vm.fileVideo = '';
+		vm.message = '';
+		vm.submitVideo = submitVideo;
 
 		activate();
 
 		function activate() {
 			return getVideos().then(function() {
-				console.info('Activated Videos View');
+				console.info('Activated Videos controller');
 			});
 		}
 
@@ -28,8 +29,16 @@
 				});
 		}
 
-		function crearVideo() {
-			alert('hola');
+		function submitVideo() {
+			var video = {
+				titulo: vm.titulo,
+				video: vm.fileVideo};
+			console.log(vm.fileVideo);
+			return videoService.postVideo(video)
+				.then(function(data) {
+					vm.message = data.data.message;
+					vm.titulo = '';
+				});
 		}
 	}
 })();

@@ -9,7 +9,8 @@
 
 	function videoService($http) {
 		return {
-			getVideos: getVideos
+			getVideos: getVideos,
+			postVideo: postVideo
 		};
 
 		function getVideos() {
@@ -18,13 +19,17 @@
 				.catch(getVideosFailed);
 
 			function getVideosComplete(response) {
-				//console.log(response.data);
 				return response.data;
 			}
 
 			function getVideosFailed(error) {
 				console.error('XHR Failed for getVideos.' + error.data);
 			}
+		}
+
+		function postVideo(data) {
+			//console.log(data);
+			return $http.post('/admin/video', data);
 		}
 	}
 

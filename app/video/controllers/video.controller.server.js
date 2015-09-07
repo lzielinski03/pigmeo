@@ -12,17 +12,19 @@ Grid.mongo = mongoose.mongo;
 var gfs = new Grid(mongoose.connection.db);
 
 
-exports.create = function(req, res) { 
-  var video = new Video(req.body);
+exports.create = function(req, res) {
+  
+  var video = new Video();
+  video.titulo = req.body.titulo;
 
   video.save(function(err) {
     if(err)
       res.send(err);
 
-    response = {
+    var response = {
       message: "Video created"
     };
-    res.json(response);
+    res.jsonp(response);
   });
 
   /*
@@ -52,9 +54,14 @@ exports.delete = function(req, res) {
 }
 
 exports.list = function(req, res) {
-  console.log('list files: ');
-  gfs.files.find().toArray( function (err, files) {
+  Video.find(function(err, videos) {
+    if (err)
+      res.send(err);
+    res.json(videos);
+  });
 /*
+  gfs.files.find().toArray( function (err, files) {
+
     files.forEach(function(value) {
        var readstream = gfs.createReadStream({
         filename : value.filename
@@ -72,14 +79,14 @@ exports.list = function(req, res) {
       //console.log(value);
     });
 
-    */
+
    
 
     if (err)
       throw err;
     res.json(files);
-  })
-
+  });
+*/
 };
 
 exports.read = function(req, res) {

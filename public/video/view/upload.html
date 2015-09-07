@@ -2,9 +2,17 @@
 <div class="jumbotron text-center">
     <h1>Video upload</h1>
     <form method="post" enctype="multipart/form-data">
+    	<fieldset>
+    		{{vm.message}}
+    	</fieldset>
     	<label for="titulo">Titulo: </label>
     	<input id="titulo" name="titulo" type="text" ng-model="vm.titulo">
-    	<input type="submit" value="enviar" ng-click="crearVideo()">
+		<br>
+
+    	<label for="fileVideo">Video: </label>
+    	<input id="fileVideo" name="fileVideo" type="file" ngf-select ng-model="vm.fileVideo">
+
+    	<br>
+    	<input type="submit" value="enviar" ng-click="vm.submitVideo()">
     </form>
-    
 </div>

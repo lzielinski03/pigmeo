@@ -1,0 +1,44 @@
+<!-- views/index.html -->
+<!doctype html>
+<html ng-app="userApp">
+<head>
+    <title>Pigmeo Authentication</title>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link type="text/css" rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/lib/font-awesome/dist/css/font-awesome.css">
+</head>
+<body>
+<!-- HEADER AND NAVBAR -->
+  <header >
+      <nav class="navbar navbar-default">
+      <div class="container">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="/">Pigmeo</a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="#auth"><i class="fa fa-shield"></i> Login</a></li>
+              <li><a href="#profile"><i class="fa fa-shield"></i> Profile</a></li>
+              <li><a href="/video/#videos"><i class="fa fa-comment"></i> Videos</a></li>
+          </ul>
+      </div>
+      </nav>
+  </header>
+
+  <!-- MAIN CONTENT AND INJECTED VIEWS -->
+      <div id="main">
+         <!-- {{ video.message }} -->
+          <!-- angular templating -->
+          <!-- this is where content will be injected -->
+          <div ng-view></div>
+      </div>
+</body>
+</html>
+
+<script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular-route/angular-route.js"></script>
+
+<script src="app.js"></script>
+<script src="user.config.js"></script>
+<script src="user.controller.js"></script>

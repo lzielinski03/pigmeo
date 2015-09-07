@@ -3,31 +3,29 @@
 /**
  * Module dependencies.
  */
-var passport = require('passport'),
-	User = require('mongoose').model('User'),
-	path = require('path'),
-	config = require('./config');
+var login = require('./passport/login');
+var signup = require('./passport/signup');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 	
 /**
  * Module init function.
  */
-module.exports = function() {
+module.exports = function(passport) {
 	// Serialize sessions
-	passport.serializeUser(function(user, done) {
-		done(null, user.id);
+	passport.serializeUser(function(user, done){
+		console.log('serialize user: ');
+		console.log(user);
+		done(null, user._id);
 	});
 
-	// Deserialize sessions
-	passport.deserializeUser(function(id, done) {
-		User.findOne({
-			_id: id
-		}, '-salt -password', function(err, user) {
-			done(err, user);
-		});
+	passport.deserializeUser(function(id, done){
+	  User.findById(id, function(err, user){
+	  	console.log('deserialize user: ', user);
+	    done(err, user);
+	  });
 	});
 
-	// Initialize strategies
-	config.getGlobbedFiles('./config/strategies/**/*.js').forEach(function(strategy) {
-		require(path.resolve(strategy))();
-	});
+	login(passport);
+	signup(passport);
 };

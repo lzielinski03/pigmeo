@@ -5,10 +5,10 @@ var configRoutes = require('../pigmeo_modules/globbedFiles.js');
 var router = require('express').Router();
 var modules = require('../config/modules.js');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 	configRoutes.getGlobbedFiles('./app/**/routes/*.routes.server.js').forEach(function(routePath) {
 		console.log('loading route: ' + routePath);
-		require(path.resolve(routePath))(app, router);
+		require(path.resolve(routePath))(app, router, passport);
 	});
 /*
 	modules.forEach(function (module) {

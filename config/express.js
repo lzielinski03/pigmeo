@@ -17,7 +17,6 @@ var flash = require('connect-flash');
 var config = require('./config.js');
 var path = require('path');
 
-
 module.exports = function(db){
 	var app = express();
 
@@ -66,6 +65,8 @@ module.exports = function(db){
 
 	app.use(busboyBodyParser()); // test for video upload
 
+	require('./passport')(passport);
+
 	// Express MongoDB session storage
 	app.use(session({
 		saveUninitialized: true,
@@ -92,7 +93,7 @@ module.exports = function(db){
     app.disable('x-powered-by');
 
     app.use(express.static(path.resolve('./public')));
-    var routes = require('../app/routes.js')(app);
+    var routes = require('../app/routes.js')(app, passport);
    
 
     // get all routes files

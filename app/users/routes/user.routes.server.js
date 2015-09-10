@@ -4,7 +4,7 @@ module.exports = function(app, router) {
 
 	var user = require('../controllers/user.controller.server.js');
 
-	router.route('/user')
+	router.route('/users')
 		.get(user.list)
 		.post(user.create);
 		

@@ -14,6 +14,9 @@ module.exports =  function(app, router) {
 		.put(video.update)
 		.delete(video.delete);
 
+	app.get('/video', function(req, res) {
+		res.sendfile('./public/video/view/index.html');
+	});
 
 	app.use('/admin', router);
 /*

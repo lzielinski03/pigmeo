@@ -9,10 +9,14 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
+                <fieldset ng-repeat="user in vm.users">
+                    <legend>{{user._id}}</legend>
+                    {{user}}
+                    </fieldset>
                 <h3><span class="fa fa-user"></span> Local</h3>
 
                     <p>
-                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>id</strong>: {{user._id}}<br>
                         <strong>email</strong>: <%= user.local.email %><br>
                         <strong>password</strong>: <%= user.local.password %>
                     </p>

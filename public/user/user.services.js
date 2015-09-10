@@ -3,17 +3,18 @@
 
 	angular
 		.module('userApp')
-		.factory('userService', userService);
+		.factory('UserService', UserService);
 
-	userService.$inject = ['$http'];
+	UserService.$inject = ['$http'];
 
-	function userService($http) {
+	function UserService($http) {
 		return {
-			getUser: getUser
+			getUser: getUser,
+			signup: signup
 		};
 
 		function getUser() {
-			return $http.get('/admin/video')
+			return $http.get('/admin_user/user')
 				.then(getUserComplete)
 				.catch(getUserFail);
 
@@ -25,11 +26,11 @@
 			function getUserFail(error) {
 				console.error('XHR Failed for getUser.' + error.data);
 			}
-		}
-		function createUser(data) {
+		};
+		function signup(data) {
 			//console.log(data);
-			return $http.post('/ad/user', data);
-		}
+			return $http.post('/admin_user/user', data);
+		};
 	}
 
 })();

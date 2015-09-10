@@ -2,22 +2,19 @@
 
 module.exports = function(app, router) {
 
-	var user = require('../controllers/users.controller.server.js');
+	var user = require('../controllers/user.controller.server.js');
 
 	router.route('/user')
 		.get(user.list)
 		.post(user.create);
+		
 	router.route('/user/:id')
 		.get(user.read)
 		.put(user.update)
 		.delete(user.delete);
 
-	app.get('/users', function(req, res) {
-		res.sendfile('./public/user/index.html');
-	});
-
-	app.use('/ad', router);
-}
+	app.use('/admin_user', router);
+};
 
 /*
 var express = require('express');

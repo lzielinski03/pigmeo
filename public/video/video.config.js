@@ -8,7 +8,7 @@
 
 	function configRoutes($routeProvider) {
 		$routeProvider
-			.when('/video', {
+			.when('/videos', {
 				templateUrl : 'view/video.html',
 				controller  : 'VideoController',
 				controllerAs: 'vm'

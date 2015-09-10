@@ -63,8 +63,9 @@ exports.update = function(req, res){
 
 		user.update({
 			username: username,
-		    //password: password,
+		    password: password,
 		    //token: token,
+		    /*
 		    group: group,
 		    role: role,
 		    profile: {
@@ -89,7 +90,7 @@ exports.update = function(req, res){
 		    site: site,
 		    service: service,
 		    // put an actualized state
-		    state: state
+		    state: state*/
 		}, function(err, userID){
 			if(err)
 				res.send(err);
